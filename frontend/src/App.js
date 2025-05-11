@@ -1,34 +1,71 @@
-import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import socket from './socket';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Chat from './components/Chat';
+import Login from './components/Login';
+import Register from './components/Register';
 
 function App() {
   const [username, setUsername] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (username) {
-      socket.auth = { username };
-      socket.connect();
+    // Check for saved auth token
+    const token = localStorage.getItem('token');
+    const savedUsername = localStorage.getItem('username');
+    
+    if (token && savedUsername) {
+      setUsername(savedUsername);
+      setIsAuthenticated(true);
     }
-  }, [username]);
+    
+    setLoading(false);
+  }, []);
+
+  const handleLogin = (user, token) => {
+    setUsername(user.username);
+    setIsAuthenticated(true);
+    localStorage.setItem('token', token);
+    localStorage.setItem('username', user.username);
+  };
+
+  const handleLogout = () => {
+    setUsername('');
+    setIsAuthenticated(false);
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+  };
+
+  if (loading) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  }
 
   return (
     <Router>
       <Routes>
-        <Route path="/chat" element={<Chat username={username} />} />
-        <Route
-          path="/"
+        <Route 
+          path="/" 
           element={
-            <div className="p-4">
-              <input
-                className="border p-2"
-                placeholder="Enter username"
-                value={username}
-                onChange={e => setUsername(e.target.value)}
-              />
-            </div>
-          }
+            isAuthenticated ? 
+              <Navigate to="/chat" /> : 
+              <Login onLogin={handleLogin} />
+          } 
+        />
+        <Route 
+          path="/register" 
+          element={
+            isAuthenticated ? 
+              <Navigate to="/chat" /> : 
+              <Register onRegister={handleLogin} />
+          } 
+        />
+        <Route 
+          path="/chat" 
+          element={
+            isAuthenticated ? 
+              <Chat username={username} onLogout={handleLogout} /> : 
+              <Navigate to="/" />
+          } 
         />
       </Routes>
     </Router>
