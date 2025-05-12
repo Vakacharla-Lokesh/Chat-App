@@ -1,7 +1,7 @@
-package main.java.chatapp.security;
+package chatapp.security;
 
-import main.java.chatapp.model.User;
-import main.java.chatapp.repository.UserRepository;
+import chatapp.model.User;
+import chatapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

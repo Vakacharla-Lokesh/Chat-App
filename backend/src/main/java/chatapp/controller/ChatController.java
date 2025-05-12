@@ -1,11 +1,11 @@
-package main.java.chatapp.controller;
+package chatapp.controller;
 
-import main.java.chatapp.model.Conversation;
-import main.java.chatapp.model.Message;
-import main.java.chatapp.model.User;
-import main.java.chatapp.repository.ConversationRepository;
-import main.java.chatapp.repository.MessageRepository;
-import main.java.chatapp.repository.UserRepository;
+import chatapp.model.Conversation;
+import chatapp.model.Message;
+import chatapp.model.User;
+import chatapp.repository.ConversationRepository;
+import chatapp.repository.MessageRepository;
+import chatapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;

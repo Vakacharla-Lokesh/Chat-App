@@ -1,6 +1,6 @@
-package main.java.chatapp.repository;
+package chatapp.repository;
 
-import com.ikaansh.chatapp.model.Conversation;
+import chatapp.model.Conversation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

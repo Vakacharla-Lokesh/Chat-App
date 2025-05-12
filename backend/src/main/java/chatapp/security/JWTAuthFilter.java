@@ -1,4 +1,4 @@
-package main.java.chatapp.security;
+package chatapp.security;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

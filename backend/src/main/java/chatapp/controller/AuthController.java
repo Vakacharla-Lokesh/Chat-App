@@ -1,8 +1,8 @@
-package main.java.chatapp.controller;
+package chatapp.controller;
 
-import main.java.chatapp.model.User;
-import main.java.chatapp.repository.UserRepository;
-import main.java.chatapp.security.JwtService;
+import chatapp.model.User;
+import chatapp.repository.UserRepository;
+import chatapp.security.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

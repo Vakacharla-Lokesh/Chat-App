@@ -1,4 +1,4 @@
-package main.java.chatapp.security;
+package chatapp.security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
